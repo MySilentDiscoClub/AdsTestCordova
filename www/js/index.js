@@ -25,7 +25,6 @@ function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
 
 
     // Admob App IDS 
@@ -87,7 +86,9 @@ document.addEventListener('admob.reward_video.exit_app', () => {
 });
 
 
-function on_ad_click() {
-	alert('clicked for ad');
-	admob.rewardVideo.show();
+
+document.getElementById('on_ad_click').onclick = function(){
+    alert('clicked for ad');
+
+    admob.rewardVideo.show();
 }

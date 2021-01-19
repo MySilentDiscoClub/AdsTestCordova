@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-admob-plus": "^0.42.0",
+    "cordova-browser": "^6.0.0",
     "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
@@ -23,6 +24,9 @@
         "APP_ID_ANDROID": "ca-app-pub-5844412397685765~4004478982",
         "APP_ID_IOS": "ca-app-pub-5844412397685765~9280856394"
       }
-    }
+    },
+    "platforms": [
+      "browser"
+    ]
   }
 }
