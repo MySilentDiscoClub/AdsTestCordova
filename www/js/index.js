@@ -42,18 +42,23 @@ function onDeviceReady() {
     // PRE LOAD THE AD
     admob.setDevMode(true); // This variable does nothing until the app goes into production.
 
-    admob.rewardVideo.load({
+    /*admob.rewardVideo.load({
         id: {
           // replace with your ad unit IDs
           android: 'ca-app-pub-5844412397685765/2163965468',
           ios: 'ca-app-pub-3940256099942544/1712485313'
         }
+    });*/
+
+    const rewarded = new admob.RewardedAd({
+      adUnitId: 'ca-app-pub-3940256099942544/1712485313',
     });
+    rewarded.load().then(() => rewarded.show());
 }
 
 
 // ADS
-document.addEventListener('admob.reward_video.load', () => {
+document.addEventListener('admob.RewardedAd.load', () => {
     alert("Ad: load");
 });
 
@@ -84,7 +89,6 @@ document.addEventListener('admob.reward_video.reward', () => {
 document.addEventListener('admob.reward_video.exit_app', () => {
     alert("Ad: exit_app");
 });
-
 
 
 document.getElementById('on_ad_click').onclick = function(){
