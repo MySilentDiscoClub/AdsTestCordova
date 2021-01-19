@@ -1,0 +1,7 @@
+{
+  "name": "Ads Test Cordova",
+  "type": "custom",
+  "integrations": {
+    "cordova": {}
+  }
+}

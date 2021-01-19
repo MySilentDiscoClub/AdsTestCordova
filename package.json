@@ -20,8 +20,8 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-admob-plus": {
-        "APP_ID_ANDROID": "ca-app-pub-xxx~xxx",
-        "APP_ID_IOS": "ca-app-pub-xxx~xxx"
+        "APP_ID_ANDROID": "ca-app-pub-5844412397685765~4004478982",
+        "APP_ID_IOS": "ca-app-pub-5844412397685765~9280856394"
       }
     }
   }
