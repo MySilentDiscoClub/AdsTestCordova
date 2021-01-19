@@ -88,5 +88,6 @@ document.addEventListener('admob.reward_video.exit_app', () => {
 
 
 function on_ad_click() {
+	alert('clicked for ad');
 	admob.rewardVideo.show();
 }
