@@ -19,75 +19,82 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener('deviceready', onDeviceReady, false)
+
+let rewardedAd
 
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
+  // Cordova is now initialized. Have fun!
 
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
+  console.log('Running cordova-' + cordova.platformId + '@' + cordova.version)
 
+  // Admob App IDS
+  // Android APP ID: ca-app-pub-5844412397685765~4004478982
+  // iOS APP ID:     ca-app-pub-5844412397685765~9280856394
 
-    // Admob App IDS 
-    // Android APP ID: ca-app-pub-5844412397685765~4004478982
-    // iOS APP ID:     ca-app-pub-5844412397685765~9280856394
+  // Reward Units
+  // Android Reward Unit: ca-app-pub-5844412397685765/2163965468
+  // iOS Reward Unit:     ca-app-pub-5844412397685765/2734811102
 
-    // Reward Units
-    // Android Reward Unit: ca-app-pub-5844412397685765/2163965468
-    // iOS Reward Unit:     ca-app-pub-5844412397685765/2734811102
+  // TEST UNITS
+  // Android: ca-app-pub-3940256099942544/5224354917
+  // ioS: ca-app-pub-3940256099942544/1712485313
 
-    // TEST UNITS
-    // Android: ca-app-pub-3940256099942544/5224354917
-    // ioS: ca-app-pub-3940256099942544/1712485313
+  // PRE LOAD THE AD
+  // admob.setDevMode(true) // This variable does nothing until the app goes into production.
 
-    // PRE LOAD THE AD
-    admob.setDevMode(true); // This variable does nothing until the app goes into production.
+  // admob.rewardVideo.load({
+  //   id: {
+  //     // replace with your ad unit IDs
+  //     android: 'ca-app-pub-5844412397685765/2163965468',
+  //     ios: 'ca-app-pub-3940256099942544/1712485313',
+  //   },
+  // })
 
-    admob.rewardVideo.load({
-        id: {
-          // replace with your ad unit IDs
-          android: 'ca-app-pub-5844412397685765/2163965468',
-          ios: 'ca-app-pub-3940256099942544/1712485313'
-        }
-    });
+  rewardedAd = new admob.RewardedAd({
+    adUnitId: {
+      // replace with your ad unit IDs
+      android: 'ca-app-pub-5844412397685765/2163965468',
+      ios: 'ca-app-pub-3940256099942544/1712485313',
+    }[cordova.platformId],
+  })
+
+  admob
+    .start()
+    .then(() => rewardedAd.load())
+    // .then(() => rewardedAd.show())
+    .catch(alert)
 }
 
-
 // ADS
-document.addEventListener('admob.reward_video.load', () => {
-    alert("Ad: load");
-});
+document.addEventListener('admob.rewarded.load', () => {
+  alert('Ad: load')
+})
 
-document.addEventListener('admob.reward_video.load_fail', () => {
-    alert("Ad: load_fail");
-});
+document.addEventListener('admob.rewarded.loadFail', () => {
+  alert('Ad: load_fail')
+})
 
-document.addEventListener('admob.reward_video.open', () => {
-    alert("Ad: open");
-});
+document.addEventListener('admob.rewarded.open', () => {
+  alert('Ad: open')
+})
 
-document.addEventListener('admob.reward_video.close', () => {
-    alert("Ad: close");
-});
+document.addEventListener('admob.rewarded.close', () => {
+  alert('Ad: close')
+})
 
-document.addEventListener('admob.reward_video.start', () => {
-    alert("Ad: start");
-});
+document.addEventListener('admob.rewarded.showFail', () => {
+  alert('Ad: showFail')
+})
 
-document.addEventListener('admob.reward_video.complete', () => {
-    alert("Ad: complete");
-});
+document.addEventListener('admob.rewarded.reward', () => {
+  alert('Ad: reward')
+})
 
-document.addEventListener('admob.reward_video.reward', () => {
-    alert("Ad: reward");
-});
+document.getElementById('on_ad_click').onclick = async function () {
+  alert('clicked for ad')
 
-document.addEventListener('admob.reward_video.exit_app', () => {
-    alert("Ad: exit_app");
-});
-
-
-document.getElementById('on_ad_click').onclick = function(){
-    alert('clicked for ad');
-
-    admob.rewardVideo.show();
+  if (await rewardedAd.isLoaded()) {
+    await rewardedAd.show()
+  }
 }
