@@ -54,7 +54,7 @@ function onDeviceReady() {
   rewardedAd = new admob.RewardedAd({
     adUnitId: {
       // replace with your ad unit IDs
-      android: 'ca-app-pub-5844412397685765/2163965468',
+      android: 'ca-app-pub-3940256099942544/5224354917',
       ios: 'ca-app-pub-3940256099942544/1712485313',
     }[cordova.platformId],
   })
@@ -92,8 +92,6 @@ document.addEventListener('admob.rewarded.reward', () => {
 })
 
 document.getElementById('on_ad_click').onclick = async function () {
-  alert('clicked for ad')
-
   if (await rewardedAd.isLoaded()) {
     await rewardedAd.show()
   }
