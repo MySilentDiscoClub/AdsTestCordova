@@ -68,27 +68,27 @@ function onDeviceReady() {
 
 // ADS
 document.addEventListener('admob.rewarded.load', () => {
-  alert('Ad: load')
+  document.getElementById('console').innerHTML = 'load';
 })
 
 document.addEventListener('admob.rewarded.loadFail', () => {
-  alert('Ad: load_fail')
+  document.getElementById('console').innerHTML = 'loadFail';
 })
 
 document.addEventListener('admob.rewarded.open', () => {
-  alert('Ad: open')
+  document.getElementById('console').innerHTML = 'open';
 })
 
 document.addEventListener('admob.rewarded.close', () => {
-  alert('Ad: close')
+  document.getElementById('console').innerHTML = 'close';
 })
 
 document.addEventListener('admob.rewarded.showFail', () => {
-  alert('Ad: showFail')
+  document.getElementById('console').innerHTML = 'showFail';
 })
 
 document.addEventListener('admob.rewarded.reward', () => {
-  alert('Ad: reward')
+  document.getElementById('console').innerHTML = 'reward';
 })
 
 
