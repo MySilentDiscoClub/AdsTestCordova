@@ -32,11 +32,11 @@
       "cordova-plugin-androidx-adapter": {}
     },
     "platforms": [
-      "browser",
-      "ios"
+      "browser"
     ]
   },
   "dependencies": {
     "cordova-ios": "6.1.1"
+    "admob-plus-cordova": "^1.0.0-alpha.4"
   }
 }

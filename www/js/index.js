@@ -91,8 +91,23 @@ document.addEventListener('admob.rewarded.reward', () => {
   alert('Ad: reward')
 })
 
+
+// Buttons
 document.getElementById('on_ad_click').onclick = async function () {
   if (await rewardedAd.isLoaded()) {
     await rewardedAd.show()
   }
 }
+document.getElementById('after_ad').onclick = async function () {
+  alert('Stuff works after ad');
+}
+
+
+// Any errors
+window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+}
+window.addEventListener('unhandledrejection', function (e) {
+  alert("Error occurred: " + e.reason.message);
+})
